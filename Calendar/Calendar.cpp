@@ -181,8 +181,10 @@ int calcWeekOther(Date date) {
         while (tmp < date.getYear()) {
             if (isLeapYear(tmp)) {
                 week = ((366 % 7) + week) % 7;
+            } else{
+                week = ((365 % 7) + week) % 7;
             }
-            week = ((365 % 7) + week) % 7;
+            tmp++;
         }
         return ((getPassedDays(date.getYear(), date.getMonth(), date.getDay()) % 7) + week) % 7;
     } else if (date.getYear() == stdDate.getYear() &&
@@ -211,6 +213,7 @@ int calcWeekOther(Date date) {
                 week = ((week - 366 % 7) + 7) % 7;
             }
             week = ((week - 365 % 7) + 7) % 7;
+            tmp--;
         }
         return (week - (getLeftDays(date.getYear(), date.getMonth(), date.getDay()) % 7) + 7) % 7;
     }
@@ -228,7 +231,7 @@ int getLeftDays(int year, int month, int day) {
 int getPassedDays(int year, int month, int day) {
     int days = 0;
     days += day;
-    for (int i = month - 1; i >= 1; i++) {
+    for (int i = month - 1; i >= 1; i--) {
         days += getDaysOfMonths(year, i);
     }
     return days;

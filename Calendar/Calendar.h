@@ -29,8 +29,12 @@ public:
     int getWeek();
 
     Date& operator=(const Date &rhs);
+    bool operator<(const Date &rhs);
 };
 bool isLeapYear(int year);
 int getDaysOfMonths(int year, int month);
 int calcWeek(Date date);
+int calcWeekOther(Date date);
+int getPassedDays(int year, int month, int day);
+int getLeftDays(int year, int month, int day);
 #endif //CALENDAR_CALENDAR_H
